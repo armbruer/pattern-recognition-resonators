@@ -31,11 +31,15 @@ The visualizer as well as the network is flexible enough to try out different ne
 
 **Hyperparameters:**
 
+RF Neuron:
 - `decay`: the decay rate of the RF neuron output signal
 - `threshold`: the amplitude at which the RF neuron spikes (default=1 because input spikes are non-graded, meaning also 1)
+- `frequency`: of each RF neuron, determines the frequency an RF neuron recognizes
+
+Learning:
 - `beta`: the rate of synaptic plasticity (~ learning rate in typical ANNs)
 - `b`: the rate of memory fading
-- `frequency`: of each RF neuron, determines the frequency an RF neuron recognizes
+
 
 The smaller the `b` the slower the networks memory fades.
 
