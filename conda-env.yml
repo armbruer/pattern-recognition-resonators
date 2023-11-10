@@ -1,0 +1,10 @@
+name: neuromorphic-computing
+channels:
+  - conda-forge
+dependencies:
+  - python >=3.8,<3.10
+  - ipykernel >=5.1
+  - ipywidgets
+  - tqdm
+  - matplotlib
+
