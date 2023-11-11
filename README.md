@@ -4,7 +4,7 @@ This project demonstrates Resonate-and-Fire (RF) neurons and unsupervised hebbia
 
 ## Setup
 
-Clone the repository and cd into it. Dependency installation is shown using [micromamba](https://mamba.readthedocs.io/en/latest/user_guide/micromamba.html), but you can also use conda or other virtual environments.
+Clone the repository and cd into it. Dependency installation is shown using [micromamba](https://mamba.readthedocs.io/en/latest/user_guide/micromamba.html), but you can also use conda or other virtual environments. Ultimately, apart from standard libraries you only need to import the RF neuron class from [lava-dl](https://github.com/lava-nc/lava-dl/releases/tag/v0.4.0)
 
 ```bash
 micromamba create -f conda-env.yml -c conda-forge
@@ -27,21 +27,20 @@ python3 general_network.py
 
 ## Experimentation
 
-The visualizer as well as the network is flexible enough to try out different network architectures.
+The visualizer as well as the network are flexible enough to try out different network architectures. Vizualisation supports both dynamic animations through matplotlib's FuncAnimation, as well as interactive time-picking through the matplotlib slider widget.
 
 **Hyperparameters:**
 
 RF Neuron:
-- `decay`: the decay rate of the RF neuron output signal
+- `decay`: the decay rate of the RF neuron(s) output signal
 - `threshold`: the amplitude at which the RF neuron spikes (default=1 because input spikes are non-graded, meaning also 1)
-- `frequency`: of each RF neuron, determines the frequency an RF neuron recognizes
+- `period`: of each RF neuron, determines the period (and thus also the frequency) an RF neuron recognizes
+
+The lava-dl RF neuron class can represent complete neuron layers with an arbitrary number of neurons inside, where the size of the layer is determined by the size of the input spike trail. Upon instantiation, the hyperparameters can be passed as boundaries, e.g. decay = [decay_min, decay_max], such that after a first input has been processed, the individual neurons in the layer are created with linearly spaced decays between decay_min and decay_max (cp. lava-dl's documentation for more details).
 
 Learning:
 - `beta`: the rate of synaptic plasticity (~ learning rate in typical ANNs)
-- `b`: the rate of memory fading
-
-
-The smaller the `b` the slower the networks memory fades.
+- `b`: the rate of memory fading, should be in [0,1]. Here, small `b` means slow memory fading, where as b=1 implies no memory at all.
 
 ## Results
 
